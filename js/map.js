@@ -82,8 +82,12 @@ function initMap() {
     var locations = [
         ['Chinatown Station (Go to Exit A)', 1.283896, 103.843464, 1],
         ['Tai Chong Kok 大中国 (Chinese Mooncakes & Pastries)', 1.281954, 103.843934, 2],
-        ['Tea Chapter (Traditional Chinese Tea)', 1.280205, 103.843553, 3]
+        ['Tea Chapter (Traditional Chinese Tea)', 1.280205, 103.843553, 3],
+        ['Lantern Shop (Roadside Stall)', 1.2825024, 103.84381610000003, 4]
+
     ];
+
+    console.log(locations);
 
     var num_markers = locations.length;
     for (var i = 0; i < num_markers; i++) {  
