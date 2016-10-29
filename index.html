@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chinatown Mid-Autumn Planner</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <link href="components\BowerScripts\bootstrap\dist\css\bootstrap.css" rel="stylesheet">
+    <link href="components\BowerScripts\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="components\BowerScripts\bootstrap\js\bootstrap.min.js"></script>
+
+    <script src="js/map.js"></script>
+    <script src="js/localStorage.js"></script>
+    <script src="js/currencyConverter.js"></script>
+    <!-- local  AIzaSyCfYC5jm11yT5rFSSs38-nUu8eidiTtmes -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNQgKhjtldBrkKZe6rSwUGlvlvaElbRUI&libraries=places&callback=initMap"
+        async defer></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASFyX6kXRo_kQ01n5kTisbXoHiZBbHnsM&libraries=places&callback=initMap"
+        async defer></script>-->
+</head>
+
+<body>
+    <header>
+        <div id="header-title">
+            <h1 style="color:white;">SG Chinatown Trail Planner</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div id="route-plan">
+            <h2>Welcome to our Chinatown Mid-Autumn Festival Trail</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-8">
+                    <div class="form-group clearfix" id="search-div">
+                        <label for="searchBox" class="col-md-2 col-lg-2 my-label"><span class="glyphicon glyphicon-map-marker"></span>Search:</label>
+                        <div class="col-lg-8">
+                            <input type="text" placeholder="Enter Location" class="form-control search-box" id="searchBox">
+                        </div>
+                    </div>
+                    <div class="separator"></div>
+<!--                     <div class="map-nav-button-div">
+                        <button type="button" class="btn btn-primary map-nav-button" onclick="addMarker()"><span class="glyphicon glyphicon-map-marker"></span> Add custom marker</button>
+                    </div> -->
+
+                    <div id="map"></div>
+
+<!--                     <div class="map-nav-button-div">
+                        <button type="button" class="btn btn-primary map-nav-button" onclick="clearMarker('all')">Clear markers</button>
+                    </div> -->
+
+                </div>
+                <div id="plan-list-container" class="col-md-4 col-lg-4">
+                    <div id="storage">
+
+<!--                         <h3>Draggable List</h3>
+                        <span>(Title can be edited in the InfoWindow.)</span>
+                        <ol id="plan-places"> -->
+
+                        </ol>   
+                        <div class="separator"></div>
+
+
+                        <!-- Trail Photos Modal -->
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModalPhotos"><span class="glyphicon glyphicon-picture"></span> View Our Trail Photos</button>
+                        <!-- Modal -->
+                        <div id="myModalPhotos" class="modal fade" role="dialog">
+                          <div class="modal-dialog modal-md">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">GALLERY</h4>
+                                </div>
+                              <div class="modal-body">
+                                <p>Exclusive photos at Tai Chong Kok, Tea Chapter and the Lantern Stall</p>
+                                <!-- <p>Some text in the modal.TESTING PHOTOS</p> -->
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+                                  <!-- Indicators -->
+                                  <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                                    <li data-target="#myCarousel" data-slide-to="5"></li>
+                                    <li data-target="#myCarousel" data-slide-to="6"></li>
+                                    <li data-target="#myCarousel" data-slide-to="7"></li>
+                                    <li data-target="#myCarousel" data-slide-to="8"></li>
+                                    <li data-target="#myCarousel" data-slide-to="9"></li>
+                                    <li data-target="#myCarousel" data-slide-to="10"></li>
+                                    <li data-target="#myCarousel" data-slide-to="11"></li>
+                                    <li data-target="#myCarousel" data-slide-to="12"></li>
+                                    <li data-target="#myCarousel" data-slide-to="13"></li>
+                                    <li data-target="#myCarousel" data-slide-to="14"></li>
+                                  </ol>
+
+                                  <!-- Wrapper for slides -->
+                                  <div class="carousel-inner" role="listbox">
+
+                                    <div class="item active">
+                                      <img src="components\Img\dazhongguo\dzg1.jpg" alt="dazhongguo">
+                                      <div class="carousel-caption">
+                                        <h3>大中国</h3>
+                                        <p style="color:white;">The atmosphere in 大中国 has a touch of mooncakes and pastries.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\dazhongguo\dzg2.jpg" alt="dazhongguo">
+                                      <div class="carousel-caption">
+                                        <h3>大中国</h3>
+                                        <p style="color:white;">The atmosphere in 大中国 has a touch of mooncakes and pastries.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\dazhongguo\dzg3.jpg" alt="dazhongguo">
+                                      <div class="carousel-caption">
+                                        <h3>大中国</h3>
+                                        <p style="color:white;">The atmosphere in 大中国 has a touch of mooncakes and pastries.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\dazhongguo\dzg4.jpg" alt="dazhongguo">
+                                      <div class="carousel-caption">
+                                        <h3>大中国</h3>
+                                        <p style="color:white;">The atmosphere in 大中国 has a touch of mooncakes and pastries.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\dazhongguo\dzg6.jpg" alt="dazhongguo">
+                                      <div class="carousel-caption">
+                                        <h3>大中国</h3>
+                                        <p style="color:white;">The atmosphere in 大中国 has a touch of mooncakes and pastries.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\dazhongguo\dzg7.jpg" alt="dazhongguo">
+                                      <div class="carousel-caption">
+                                        <h3>大中国</h3>
+                                        <p style="color:white;">The atmosphere in 大中国 has a touch of mooncakes and pastries.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\lanternshop\4.jpg" alt="Lantern Stall">
+                                      <div class="carousel-caption">
+                                        <h3>Lantern Stall</h3>
+                                        <p style="color:white;">The atmosphere at the Lantern Stall has a touch of Lanterns.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\lanternshop\6.jpg" alt="Lantern Stall">
+                                      <div class="carousel-caption">
+                                        <h3>Lantern Stall</h3>
+                                        <p style="color:white;">The atmosphere at the Lantern Stall has a touch of Lanterns.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\teachapter\15.jpg" alt="Tea Chapter">
+                                      <div class="carousel-caption">
+                                        <h3>Tea Chapter</h3>
+                                        <p style="color:white;">The atmosphere at the Tea Chapter has a touch of Tea.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\teachapter\1.jpg" alt="Tea Chapter">
+                                      <div class="carousel-caption">
+                                        <h3>Tea Chapter</h3>
+                                        <p style="color:white;">The atmosphere at the Tea Chapter has a touch of Tea.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\teachapter\3.jpg" alt="Tea Chapter">
+                                      <div class="carousel-caption">
+                                        <h3>Tea Chapter</h3>
+                                        <p style="color:white;">The atmosphere at the Tea Chapter has a touch of Tea.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\teachapter\5.jpg" alt="Tea Chapter">
+                                      <div class="carousel-caption">
+                                        <h3>Tea Chapter</h3>
+                                        <p style="color:white;">The atmosphere at the Tea Chapter has a touch of Tea.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\teachapter\7.jpg" alt="Tea Chapter">
+                                      <div class="carousel-caption">
+                                        <h3>Tea Chapter</h3>
+                                        <p style="color:white;">The atmosphere at the Tea Chapter has a touch of Tea.</p>
+                                      </div>
+                                    </div>
+ 
+                                    <div class="item">
+                                      <img src="components\Img\teachapter\8.jpg" alt="Tea Chapter">
+                                      <div class="carousel-caption">
+                                        <h3>Tea Chapter</h3>
+                                        <p style="color:white;">The atmosphere at the Tea Chapter has a touch of Tea.</p>
+                                      </div>
+                                    </div>
+
+                                    <div class="item">
+                                      <img src="components\Img\teachapter\12.jpg" alt="Tea Chapter">
+                                      <div class="carousel-caption">
+                                        <h3>Tea Chapter</h3>
+                                        <p style="color:white;">The atmosphere at the Tea Chapter has a touch of Tea.</p>
+                                      </div>
+                                    </div>
+
+
+                                  </div>
+
+                                  <!-- Left and right controls -->
+                                  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <!-- Carousel ends here -->
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                    
+
+                        <!-- Take Quiz Modal -->
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModalQuiz"><span class="glyphicon glyphicon-pencil"></span> Take Quiz</button>
+                        <!-- Modal -->
+                        <div id="myModalQuiz" class="modal fade" role="dialog">
+                          <div class="modal-dialog modal-lg">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                 <h4 class="modal-title">QUIZ TIME</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p>Answer all questions first before revealing answers at the end.</p>
+                                <!-- START OF QUIZ QUESTIONS-->
+                                <!-- http://www.hungrypiranha.org/make-a-website/html-quiz -->
+                                <table class = "table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td><p class="question">1. When is the Mid-Autumn Festival on the lunar calendar?</p></td>
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q1" value="a" id="q1a"><label for="q1a">15th day of the 7th month</label></td>          
+                                            <td><input type="radio" name="q1" value="b" id="q1b"><label for="q1b">15th day of the 8th month</label></td>         
+                                            <td><input type="radio" name="q1" value="c" id="q1c"><label for="q1c">15th day of the 9th month</label></td>           
+                                            <td><input type="radio" name="q1" value="d" id="q1d"><label for="q1d">15th day of the 10th month</label></td>      
+                                            </ul>
+                                        </tr> 
+                                        
+                                        <tr>
+                                            <td><p class="question">2. Tea Chapter is celebrating their _th anniversary this year.</p></td>        
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q2" value="a" id="q2a"><label for="q2a">25</label></td>          
+                                            <td><input type="radio" name="q2" value="b" id="q2b"><label for="q2b">26</label></td>     
+                                            <td><input type="radio" name="q2" value="c" id="q2c"><label for="q2c">27</label></td>           
+                                            <td><input type="radio" name="q2" value="d" id="q2d"><label for="q2d">28</label></td>       
+                                            </ul>        
+                                        </tr>
+
+                                        <tr>
+                                            <td><p class="question">3. Tea Chapter was founded by _ individuals.</p></td>        
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q3" value="a" id="q3a"><label for="q3a">7</label></td>           
+                                            <td><input type="radio" name="q3" value="b" id="q3b"><label for="q3b">9</label></td>            
+                                            <td><input type="radio" name="q3" value="c" id="q3c"><label for="q3c">11</label></td>          
+                                            <td><input type="radio" name="q3" value="d" id="q3d"><label for="q3d">13</label></td>      
+                                            </ul>
+                                        </tr>        
+
+                                        <tr>
+                                            <td><p class="question">4. What is Tea Chapter’s bestselling tea?</p></td>        
+
+                                            <ul class="answers">           
+                                            <td><input type="radio" name="q4" value="a" id="q4a"><label for="q4a">Hong Guan Yin</label></td>            
+                                            <td><input type="radio" name="q4" value="b" id="q4b"><label for="q4b">Aged Pu’er</label></td>            
+                                            <td><input type="radio" name="q4" value="c" id="q4c"><label for="q4c">Golden Cassia</label></td>           
+                                            <td><input type="radio" name="q4" value="d" id="q4d"><label for="q4d">Rose Tea</label></td>       
+                                            </ul>        
+                                        </tr>   
+
+                                        <tr>
+                                            <td><p class="question">5. Which generation of the Tham family is currently running Tai Chong Kok?</p></td>        
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q5" value="a" id="q5a"><label for="q5a">2nd generation</label></td>            
+                                            <td><input type="radio" name="q5" value="b" id="q5b"><label for="q5b">3rd generation </label></td>            
+                                            <td><input type="radio" name="q5" value="c" id="q5c"><label for="q5c">4th generation</label></td>           
+                                            <td><input type="radio" name="q5" value="d" id="q5d"><label for="q5d">5th generation</label></td>        
+                                            </ul>
+                                        </tr>        
+
+                                        <tr>
+                                            <td><p class="question">6. What does the mooncake symbolize?</p></td>        
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q6" value="a" id="q6a"><label for="q6a">Youthfulness</label></td>            
+                                            <td><input type="radio" name="q6" value="b" id="q6b"><label for="q6b">Happiness</label></td>            
+                                            <td><input type="radio" name="q6" value="c" id="q6c"><label for="q6c">Reunion</label></td>            
+                                            <td><input type="radio" name="q6" value="d" id="q6d"><label for="q6d">Luck</label></td>        
+                                            </ul>
+                                        </tr>       
+
+                                        <tr>
+                                            <td><p class="question">7. Other than mooncakes, what is another festive bestseller at Tai Chong Kok?</p></td>        
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q7" value="a" id="q7a"><label for="q7a">Nian Gao</label></td>            
+                                            <td><input type="radio" name="q7" value="b" id="q7b"><label for="q7b">Walnut Cookie</label></td>            
+                                            <td><input type="radio" name="q7" value="c" id="q7c"><label for="q7c">Egg Tart</label></td>            
+                                            <td><input type="radio" name="q7" value="d" id="q7d"><label for="q7d">Wife Cake</label></td>        
+                                            </ul>
+                                        </tr>        
+
+                                        <tr>
+                                            <td><p class="question">8. Other than Chinese New Year, what is the other major occasion when locals purchase lanterns?</p></td>        
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q8" value="a" id="q8a"><label for="q8a">Mid-Autumn</label></td>            
+                                            <td><input type="radio" name="q8" value="b" id="q8b"><label for="q8b">New Year</label></td>            
+                                            <td><input type="radio" name="q8" value="c" id="q8c"><label for="q8c">Christmas</label></td>            
+                                            <td><input type="radio" name="q8" value="d" id="q8d"><label for="q8d">Halloween</label></td>       
+                                            </ul>        
+                                        </tr>
+
+                                        <tr>
+                                            <td><p class="question">9. What colour of lantern is most popular for Chinese New Year?</p></td>        
+
+                                            <ul class="answers">            
+                                            <td><input type="radio" name="q9" value="a" id="q9a"><label for="q9a">Orange</label></td>            
+                                            <td><input type="radio" name="q9" value="b" id="q9b"><label for="q9b">Pink</label></td>           
+                                            <td><input type="radio" name="q9" value="c" id="q9c"><label for="q9c">Yellow</label></td>            
+                                            <td><input type="radio" name="q9" value="d" id="q9d"><label for="q9d">Red</label></td>        
+                                            </ul>        
+                                        </tr>
+
+                                        <tr>
+                                            <td><p class="question">10. Who are the major customers of the lantern shop?</p></td>        
+
+                                            <ul class="answers">           
+                                            <td><input type="radio" name="q10" value="a" id="q10a"><label for="q10a">Locals</label></td>            
+                                            <td><input type="radio" name="q10" value="b" id="q10b"><label for="q10b">Tourists</label></td>            
+                                            <td><input type="radio" name="q10" value="c" id="q10c"><label for="q10c">Both A & B</label></td>            
+                                            <td><input type="radio" name="q10" value="d" id="q10d"><label for="q10d">Not A & B</label></td>        
+                                            </ul>        
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div id="results">           
+                                    Show me the answers!       
+                                </div>
+                                </br>
+
+                                <div id="category1">            
+                                    <div class="alert alert-danger"><p>              
+                                        <strong>Question 1:</strong> The correct answer is the <strong>15th day of the 8th month</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category2">            
+                                    <div class="alert alert-danger"><p>              
+                                        <strong>Question 2:</strong> The correct answer is <strong>27</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category3">            
+                                    <div class="alert alert-danger"><p>                
+                                        <strong>Question 3:</strong> The correct answer is <strong>13</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category4">            
+                                    <div class="alert alert-danger"><p>               
+                                        <strong>Question 4:</strong> The correct answer is <strong>Golden Cassia</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category5">            
+                                    <div class="alert alert-danger"><p>                
+                                        <strong>Question 5:</strong> The correct answer is <strong>3rd Generation</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category6">            
+                                    <div class="alert alert-danger"><p>                
+                                        <strong>Question 6:</strong> The correct answer is <strong>Reunion</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category7">            
+                                    <div class="alert alert-danger"><p>                
+                                        <strong>Question 7:</strong> The correct answer is <strong>Nian Gao</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category8">            
+                                    <div class="alert alert-danger"><p>               
+                                        <strong>Question 8:</strong> The correct answer is <strong>Mid-Autumn</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category9">           
+                                    <div class="alert alert-danger"><p>               
+                                        <strong>Question 9:</strong> The correct answer is <strong>Red</strong>.</p>
+                                    </div>        
+                                </div>        
+
+                                <div id="category10">            
+                                    <div class="alert alert-danger"><p>                
+                                        <strong>Question 10:</strong> The correct answer is <strong>Tourists</strong>.</p>
+                                    </div>        
+                                </div>
+      
+
+                                <div id="category11">
+                                    <div class="alert alert-success">            
+                                        <p><strong>Congratulations! You answered them all correctly!<strong></p>
+                                    </div>        
+                                </div>
+                              <!-- END OF QUIZ QUESTIONS -->
+
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+<!--                         <select id="planSelect"></select>
+                        <button type="button" class="btn btn-success btn-storage" id="loadButton" onclick="loadPlan()" disabled="true">Load from LocalStorage</button>
+
+                        <div class="separator"></div>
+
+                        <input type="text" id="planName" name="" value="" placeholder="Plan's name">
+                        <button type="button" class="btn btn-warning btn-storage" id="saveButton" onclick="setPlan()">Save to LocalStorage</button> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+        <footer class="container-fluid text-center">
+            <p class="footer">Thank you for joining us lah. We hope you have enjoyed the trail. <span class="glyphicon glyphicon-thumbs-up"></span> <br><span class="glyphicon glyphicon-film"></span> Watch our Youtube video for more exciting trail footages. </br> </p>
+        </footer>
+
+<!--         <div id="currencyConverter">
+            <h2>Currency Converter</h2>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <p>Access Restricted - Your current Subscription Plan does not support Source Currency Switching</p>
+                    <p id="currUpdateLabel">
+                        <button type="button" class="btn btn-success map-nav-button" onclick="loadCurrencies()">Load data</button>                        Last update (server-side): <span id="currUpdateDate"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-lg-5">
+                    <select id="currencyFrom" class="currencyList">
+                        <option value="USD">USD</option>
+                    </select>
+                    <input type="number" id="valueToConvert" class="currency-textbox" placeholder="Value" oninput="calculateCurrency(event)"
+                        onkeypress="calculateCurrency(event)">
+                </div>
+                <div class="col-md-2 col-lg-2">
+                    <p style="text-align:center;">&harr;</p>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <select id="currencyTo" class="currencyList" onchange="changeCurrencyTo(event)">
+                        <option selected disabled>Choose currency</option>
+                    </select>
+                    <input type="textbox" id="conversionResult" class="currency-textbox" placeholder="Result" disabled="disabled">
+                </div>
+            </div>
+        </div>
+
+        <div class="separator"></div> -->
+
+
+    </div>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/quiz-1.js"></script> 
+
+</body>
+
+</html>
